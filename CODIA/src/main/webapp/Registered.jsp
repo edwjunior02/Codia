@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>User registration</title>
 </head>
 <body>
 User ${model.user} has been registered correctly.
