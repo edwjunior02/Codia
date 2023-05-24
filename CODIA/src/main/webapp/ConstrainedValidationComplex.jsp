@@ -18,6 +18,7 @@ input:invalid {
   padding: 0;
   color: white;
   background-color: red;
+  border-color: blue;
 }
 
 .error.active {
