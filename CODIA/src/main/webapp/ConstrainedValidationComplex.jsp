@@ -29,51 +29,51 @@ input:invalid {
 <body>
 
 <ul>
-<c:if test = "${user.error[0]}">
+<c:if test = "${model.error[0]}">
 	<li> Entered user name has been already registered </li>
 </c:if>
 </ul>
 
 <form novalidate action="RegisterController">
   <label for="user"> User name:</label><br>
-  <input type="text" id="user" name="user" placeholder="Name" value="${user.user}" required><br>
+  <input type="text" id="user" name="user" placeholder="Name" value="${model.user}" required><br>
   
   <label for="mail"> Mail:</label><br>
-  <input type="email" id="mail" name="mail" placeholder="Mail" value="${user.mail}" required>
+  <input type="email" id="mail" name="mail" placeholder="Mail" value="${model.mail}" required>
   <span class="error"></span> <br>
   
   <label for="pwd1"> Password: </label><br>
-  <input type="password" id="pwd1" name="pwd1" placeholder="Password" value="${user.pwd1}" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$"><br>
+  <input type="password" id="pwd1" name="pwd1" placeholder="Password" value="${model.pwd1}" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$"><br>
   
   <label for="pwd1"> Confirm Password: </label><br>
-  <input type="password" id="pwd2" name="pwd2" placeholder="Confirm Password" value="${user.pwd2}" required><br>
+  <input type="password" id="pwd2" name="pwd2" placeholder="Confirm Password" value="${model.pwd2}" required><br>
   
   <label for="phone_number"> Phone Number:</label><br>
-  <input type="tel" id="phone_number" name="phone_number" placeholder="Phone Number" value="${user.phone_number}"><br>
+  <input type="tel" id="phone_number" name="phone_number" placeholder="Phone Number" value="${model.phone_number}"><br>
   
   <label for="genders"> Gender:</label><br>
   <select name="genders" id="genders">
   	<option value="" disabled selected>-- Select an option --</option>
-  	<option value="${user.genders}">Woman</option>
-  	<option value="${user.genders}">Man</option>
-  	<option value="${user.genders}">Non-Binary</option>
-  	<option value="${user.genders}">Other</option>
+  	<option value="${model.genders}">Woman</option>
+  	<option value="${model.genders}">Man</option>
+  	<option value="${model.genders}">Non-Binary</option>
+  	<option value="${model.genders}">Other</option>
 </select><br>
 
   <label for="experience"> Experience:</label><br>
   <select name="experience" id="experience">
   	<option value="" disabled selected>-- Select an option --</option>
-  	<option value="${user.experience}">High</option>
-  	<option value="${user.experience}">Moderate</option>
-  	<option value="${user.experience}">Low</option>
-  	<option value="${user.experience}">None</option>
+  	<option value="${model.experience}">High</option>
+  	<option value="${model.experience}">Moderate</option>
+  	<option value="${model.experience}">Low</option>
+  	<option value="${model.experience}">None</option>
   </select><br>
   
   <label for="languages"> Programming Languages:</label><br>
-  <input type="text" id="languages" name="languages" placeholder="Languages" value="${user.languages}" ><br>
+  <input type="text" id="languages" name="languages" placeholder="Languages" value="${model.languages}" ><br>
   
   <label for="linkedin"> LinkedIn Page:</label><br>
-  <input type="text" id="linkedin" name="linkedin" placeholder="Linkedin" value="${user.linkedin}" ><br>
+  <input type="text" id="linkedin" name="linkedin" placeholder="Linkedin" value="${model.linkedin}" ><br>
   
   
 <br><button> Submit </button>
