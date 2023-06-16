@@ -7,5 +7,8 @@
     <label class="w3-text-red"><b> User id </b></label>
     <input class="w3-input w3-border w3-light-grey" type="text" name="user" value="${login.user}" required minlength="5" ></p>
     <p>
+    <label for="pwd1" class="w3-text-red"><b> Password: </b></label>
+    <input class="w3-input w3-border w3-light-grey" type="password" id="password" name="password" value="${login.password}" ></p>
+    <p>
     <input class="w3-btn w3-red" type="submit" name="sumbit" value="Submit"></p>
 </form>
