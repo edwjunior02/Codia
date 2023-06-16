@@ -6,7 +6,7 @@
 <head>
 <link rel="icon" href="imgs/me.png">
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title> Lab 3 template </title>
+<title> CODIA </title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -15,9 +15,9 @@
 $(document).ready(function(){
 	$.ajaxSetup({ cache: false }); //Avoids Internet Explorer caching!	
 	$(document).on("click",".menu", async function(event) {
-		//$('#content').load('ContentController',{content: $(this).attr('id')});
-		//const response = await fetch($(this).attr('id'));
-		//$('#content').html(await response.text());
+		$('#content').load('ContentController',{content: $(this).attr('id')});
+		const response = await fetch($(this).attr('id'));
+		$('#content').html(await response.text());
 		$('#content').load($(this).attr('id'));
 		event.preventDefault();
 	});
