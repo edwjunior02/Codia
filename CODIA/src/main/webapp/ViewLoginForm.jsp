@@ -2,13 +2,22 @@
     pageEncoding="UTF-8" session="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+
+<c:if test = "${error}">
+<div class="w3-panel w3-theme-l4 w3-display-container">
+  <span onclick="this.parentElement.style.display='none'"
+  class="w3-button w3-large w3-display-topright">&times;</span>
+  <h3> Identification error! </h3>
+  <p> Provided credentials do not match our database. </p>
+</div>
+</c:if>
+
+
 <form action="LoginController" method="POST">
 	<p>      
-    <label class="w3-text-red"><b> User id </b></label>
-    <input class="w3-input w3-border w3-light-grey" type="text" name="user" value="${login.user}" required minlength="5" ></p>
-    <p>
-    <label for="pwd1" class="w3-text-red"><b> Password: </b></label>
-    <input class="w3-input w3-border w3-light-grey" type="password" id="password" name="password" value="${login.password}" ></p>
-    <p>
-    <input class="w3-btn w3-red" type="submit" name="sumbit" value="Submit"></p>
+    <label for="user" class="w3-text-theme"> User name </label><br>
+    <input class="w3-input w3-border w3-light-grey" type="text" id="username" name="username" placeholder="Username" value="${user.username}" required autocomplete="username"><br>
+    <label for="pwd1" class="w3-text-theme"> Password: </label><br>
+  	<input class="w3-input w3-border w3-light-grey" type="password" id="pwd1" name="pwd1" placeholder="Password" value="${user.pwd1}" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$" autocomplete="current-password"><br><br>
+    <input class="w3-btn w3-theme" type="submit" name="sumbit" value="Submit"></p>
 </form>

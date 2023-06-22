@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.beanutils.BeanUtils;
 
+import managers.ManageUsers;
 import models.User;
 
 /**
@@ -34,22 +35,48 @@ public class RegisterController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 	   System.out.print("RegisterController: ");
-		
+	   User user = new User();
+	   ManageUsers manager = new ManageUsers();
+	   boolean cn = false;
+	   boolean cm = false;
+	
 	   try {
 	
-		   User user = new User();
 		   BeanUtils.populate(user, request.getParameterMap());
-		
-		   if (user.isComplete()) {
+		   
+		   /*System.out.println("User: " + user.getUsername());
+	       System.out.println("Mail: " + user.getMail());
+	       System.out.println("Password: " + user.getPwd1());
+	       System.out.println("Password: " + user.getPwd2());
+	       System.out.println("Gender: " + user.getGenders());
+	       System.out.println("PhoneNumber: " + user.getPhonenumber());
+	       System.out.println("Experience: " + user.getExperience());
+	       System.out.println("Languages: " + user.getLanguages());
+	       System.out.println("Linkedin: " + user.getLinkedin());*/
+		   
+		   cn = manager.checkUser(user.getUsername());
+		   cm = manager.checkMail(user.getMail());
+		   
+		   user.setError("username", cn);
+		   user.setError("mail", cm);
+		   
+		   System.out.println("cn: " + cn);
+		   System.out.println("cm: " + cm);
+		   System.out.println("isComplete: " + manager.isComplete(user));
+		   
+		   if (manager.isComplete(user) && !cn && !cm) {
 			   
-			   System.out.println(" user ok, forwarding to ViewLoginForm");
+			   manager.addUser(user);
+			   manager.finalize();
+			   System.out.println(" user registered, forwarding to ViewLoginForm.");
 			   RequestDispatcher dispatcher = request.getRequestDispatcher("ViewLoginForm.jsp");
 			   dispatcher.forward(request, response);
 		   
 		   } 
-		   else {
+		   
+		   else  {
 		
-			   System.out.println(" forwarding to ViewRegisterForm");
+			   System.out.println(" some field is incorrect, forwarding to ViewRegisterForm.");
 			   request.setAttribute("user",user);
 			   RequestDispatcher dispatcher = request.getRequestDispatcher("ViewRegisterForm.jsp");
 			   dispatcher.forward(request, response);
@@ -67,6 +94,14 @@ public class RegisterController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+	}
+	
+	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+	}
+	
+	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 	}
 
 }
