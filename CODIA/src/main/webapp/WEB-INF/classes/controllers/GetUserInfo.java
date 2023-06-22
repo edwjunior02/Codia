@@ -8,18 +8,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import managers.ManageUsers;
+import models.User;
 
 /**
- * Servlet implementation class ContentController
+ * Servlet implementation class GetUserInfo
  */
-@WebServlet("/ContentController")
-public class ContentController extends HttpServlet {
+@WebServlet("/GetUserInfo")
+public class GetUserInfo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ContentController() {
+    public GetUserInfo() {
         super();
     }
 
@@ -28,11 +32,18 @@ public class ContentController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String content = (String)request.getParameter("content");
-		System.out.println("ContentController: forwarding to " + content);
-		RequestDispatcher dispatcher = request.getRequestDispatcher(content);
-		dispatcher.forward(request, response);
+		HttpSession session = request.getSession(false);
+		User user = (User) session.getAttribute("user");
 		
+		if (session != null || user != null) {
+			ManageUsers userManager = new ManageUsers();
+			user = userManager.getUser(user.getId());
+			userManager.finalize();
+		}
+		
+		request.setAttribute("user",user);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/ViewUserInfo.jsp"); 
+		dispatcher.include(request,response);
 	}
 
 	/**

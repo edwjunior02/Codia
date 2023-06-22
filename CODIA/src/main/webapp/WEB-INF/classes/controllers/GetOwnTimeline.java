@@ -8,19 +8,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class MenuController
+ * Servlet implementation class GetOwnTimeline
  */
-@WebServlet("/MenuController")
-public class MenuController extends HttpServlet {
+@WebServlet("/GetOwnTimeline")
+public class GetOwnTimeline extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MenuController() {
+    public GetOwnTimeline() {
         super();
     }
 
@@ -29,22 +28,9 @@ public class MenuController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.print("MenuController: ");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("ViewOwnTimeline.jsp");
+		dispatcher.forward(request, response);
 		
-		HttpSession session = request.getSession(false);
-		
-		if (session.getAttribute("user")!=null) {
-		
-			System.out.println("forwarding to ViewMenuLogged.");
-			RequestDispatcher dispatcher = request.getRequestDispatcher("ViewMenuLogged.jsp");
-			dispatcher.forward(request, response);
-		}
-		else {
-			
-			System.out.println("forwarding to ViewMenuNotLogged.");
-			RequestDispatcher dispatcher = request.getRequestDispatcher("ViewMenuNotLogged.jsp");
-			dispatcher.forward(request, response);
-		}
 	}
 
 	/**

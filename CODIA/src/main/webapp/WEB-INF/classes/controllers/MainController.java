@@ -32,14 +32,14 @@ public class MainController extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		
 		if (session==null || session.getAttribute("user")==null) {
-			System.out.println("MainController: NO active session has been found,");
+			System.out.println("MainController: NO active session has been found.");
 			request.setAttribute("menu","ViewMenuNotLogged.jsp");
-			request.setAttribute("content","ViewRegisterForm.jsp");
+			request.setAttribute("content","ViewLoginForm.jsp");
 		}
 		else {
-			System.out.println("Main Controller: active session has been found,");
+			System.out.println("Main Controller: active session has been found.");
 			request.setAttribute("menu","ViewMenuLogged.jsp");
-			request.setAttribute("content","ViewLoginDone.jsp");
+			request.setAttribute("content","ViewOwnTimeline.jsp");
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
